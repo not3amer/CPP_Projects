@@ -1,0 +1,79 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <cstdlib>
+#include <fstream>
+
+using namespace std;
+
+struct clientData {
+	string accountNumber;
+	string pinCode;
+	string name;
+	string phone;
+	float accountBalance;
+};
+clientData setClientData(clientData client) {
+	cout << "------- Client Data---------\n\n";
+
+	cout << "enter account number  : ";
+	getline(cin >> ws, client.accountNumber);
+
+	cout << "enter pin code        : ";
+	getline(cin >> ws, client.pinCode);
+
+	cout << "enter client name     : ";
+	getline(cin >> ws, client.name);
+
+	cout << "enter client phone    : ";
+	getline(cin >> ws, client.phone);
+
+	cout << "enter account balance : ";
+	cin >> client.accountBalance;
+
+	return client;
+}
+string convertRecordeToOneLine(clientData client, string seprator)
+{
+	string recorde = "";
+	recorde = client.accountNumber + seprator +client.pinCode
+		+ seprator + client.name + seprator + client.phone + seprator + to_string(client.accountBalance);
+	return recorde;
+}
+void printRecordeIntoFile(string line) {
+	fstream myFile;
+	myFile.open("clientsdata.txt", ios::out | ios::app);
+
+	if (myFile.is_open()) {
+		myFile << line << endl;
+		myFile.close();
+	}
+
+}
+void addClient() {
+	clientData data;
+	string seprator = "#//#";
+	data = setClientData(data);
+	printRecordeIntoFile(convertRecordeToOneLine(data, seprator));
+}
+void resetScreen() {
+	system("cls");
+}
+void startProgram() {
+	char choice = 'y';
+	do{
+		cout << "Adding New Client\n\n";
+		resetScreen();
+		addClient();
+		cout << "\nClient Added Successfuly, Add more clients (y/n)? ";
+		cin >> choice;
+	} while (choice == 'y' || choice == 'Y');
+}
+int main()
+{
+	startProgram();
+    
+    return 0;
+}
+
+

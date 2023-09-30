@@ -1,0 +1,11 @@
+﻿  Source.cpp
+D:\courses\BankProject\BankProject\Source.cpp(68,35): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\courses\BankProject\BankProject\Source.cpp(663,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\courses\BankProject\BankProject\Source.cpp(909,7): warning C4101: 'fullAccesschoice': unreferenced local variable
+D:\courses\BankProject\BankProject\Source.cpp(283): warning C4715: 'DeleteClientByAccNum': not all control paths return a value
+D:\courses\BankProject\BankProject\Source.cpp(349): warning C4715: 'EditClientByAccNum': not all control paths return a value
+D:\courses\BankProject\BankProject\Source.cpp(484): warning C4715: 'depositInAccount': not all control paths return a value
+D:\courses\BankProject\BankProject\Source.cpp(528): warning C4715: 'WithDrawFromAccount': not all control paths return a value
+D:\courses\BankProject\BankProject\Source.cpp(892): warning C4715: 'DeleteUserByUsername': not all control paths return a value
+D:\courses\BankProject\BankProject\Source.cpp(950): warning C4715: 'EditUserByAccNum': not all control paths return a value
+  BankProject.vcxproj -> D:\courses\BankProject\x64\Debug\BankProject.exe

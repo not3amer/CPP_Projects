@@ -1,0 +1,4 @@
+﻿  Source1.cpp
+D:\courses\Projects In Funcational Programming\Math_Game\mathgame\Source1.cpp(48,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\courses\Projects In Funcational Programming\Math_Game\mathgame\Source1.cpp(49,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  mathgame.vcxproj -> D:\courses\Projects In Funcational Programming\Math_Game\x64\Debug\mathgame.exe

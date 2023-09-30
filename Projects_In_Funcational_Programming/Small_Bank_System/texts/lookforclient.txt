@@ -1,0 +1,96 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <cstdlib>
+#include <fstream>
+#include <iomanip>
+
+using namespace std;
+
+struct clientData {
+	string accountNumber;
+	string pinCode;
+	string name;
+	string phone;
+	float accountBalance;
+};
+vector <string> splitStr(string line,string seprator) {
+	vector <string> vClient;
+	short pos;
+	string word = "";
+	while ((pos = line.find(seprator)) != std::string::npos) {
+		word = line.substr(0, pos);
+		if (word != "")
+			vClient.push_back(word);
+		line.erase(0, pos + seprator.length());
+	}
+	if (line != "") {
+		word = line;
+		vClient.push_back(word);
+	}
+	return vClient;
+}
+clientData getClientIntoStruct(string line) {
+	vector <string> vLine = splitStr(line, "#//#");
+	clientData client;
+	client.accountNumber = vLine[0];
+	client.pinCode = vLine[1];
+	client.name = vLine[2];
+	client.phone = vLine[3];
+	client.accountBalance = stof(vLine[4]);
+	return client;
+}
+vector <clientData> getRecordsFromFile() {
+	vector <clientData> vClients;
+	fstream myFile;
+	myFile.open("clientsdata.txt", ios::in);
+
+	if (myFile.is_open()) {
+		string line;
+		clientData client;
+		while (getline(myFile, line)) {
+			client = getClientIntoStruct(line);
+			vClients.push_back(client);
+		}
+		myFile.close();
+	}
+	return vClients;
+}
+bool CheckExist(string accNumber, clientData &client) {
+	vector <clientData> vClients = getRecordsFromFile();
+	for (clientData c : vClients) {
+		if (c.accountNumber == accNumber) {
+			client = c;
+			return true;
+		}
+	}
+	return false;
+}
+void printClientData(clientData client) {
+		cout << "\n\n----------- Client Data----------- \n\n";
+		cout << "Account Number : " << client.accountNumber << endl;
+		cout << "Pin Code       : " << client.pinCode << endl;
+		cout << "Full Name      : " << client.name << endl;
+		cout << "Phone Number   : " << client.phone << endl;
+		cout << "Account Balance: " << client.accountBalance << endl;
+}
+void searchClient() {
+	clientData client;
+	string accNumber;
+	cout << "enter Account Number: ";
+	getline(cin >> ws, accNumber);
+
+	if (CheckExist(accNumber, client))
+		printClientData(client);
+	else
+		cout << "\n\naccount number [ " << accNumber << " ] is not exist\n\n";
+
+}
+int main()
+{
+	searchClient();
+
+    return 0;
+}
+
+
